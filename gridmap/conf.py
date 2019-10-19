@@ -70,6 +70,7 @@ from __future__ import (absolute_import, division, print_function,
 
 import logging
 import os
+import sys
 from socket import gethostname
 
 
@@ -135,3 +136,6 @@ DEFAULT_TEMP_DIR = os.getenv('DEFAULT_TEMP_DIR', '/scratch/')
 
 # Which parallel environment to use by default
 DEFAULT_PAR_ENV = os.getenv('DEFAULT_PAR_ENV', "smp")
+
+# Where the remote python executable lives
+DEFAULT_PYTHON_EXECUTABLE = os.getenv('DEFAULT_PYTHON_EXECUTABLE', sys.executable)
