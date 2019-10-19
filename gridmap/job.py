@@ -63,7 +63,8 @@ from gridmap.conf import (CHECK_FREQUENCY, CREATE_PLOTS, DEFAULT_QUEUE,
                           IDLE_THRESHOLD, MAX_IDLE_HEARTBEATS,
                           MAX_TIME_BETWEEN_HEARTBEATS, NUM_RESUBMITS,
                           SEND_ERROR_MAIL, SMTP_SERVER, USE_MEM_FREE,
-                          DEFAULT_TEMP_DIR, DEFAULT_PAR_ENV)
+                          DEFAULT_TEMP_DIR, DEFAULT_PAR_ENV,
+                          DEFAULT_PYTHON_EXECUTABLE)
 from gridmap.data import zdumps, zloads
 from gridmap.runner import _heart_beat
 
@@ -812,7 +813,7 @@ def _append_job_to_session(session, job, temp_dir=DEFAULT_TEMP_DIR, quiet=True):
     jt.jobEnvironment = job.environment
 
     # Run module using python -m to avoid ImportErrors when unpickling jobs
-    jt.remoteCommand = sys.executable
+    jt.remoteCommand = DEFAULT_PYTHON_EXECUTABLE
     jt.args = ['-m', 'gridmap.runner', '{}'.format(job.home_address), job.path]
     jt.nativeSpecification = job.native_specification
     jt.jobName = job.name
